@@ -1,0 +1,14 @@
+PyVision-RL upstream: https://github.com/agents-x-project/PyVision-RL
+Base commit: 62ca599d05ba81854afa39b435780785bcdf1b1a
+License: MIT; original LICENSE retained verbatim, Copyright (c) 2025 RAGEN.AI.
+Bundled source headers, including verl/Apache notices, remain in their original files.
+Personal extensions: reward parsing, rollout selection, tool quality and worker lifecycle,
+training/evaluation orchestration, evidence audits, and experiment reporting.
+
+External dependency, not vendored:
+PyVision-RL-Eval: https://github.com/agents-x-project/PyVision-RL-Eval
+Reference revision: 9a756943702fb4b4b2cc7548f81a1e162a99d569
+No LICENSE file was found in that revision. Its code, benchmark records and media
+are not redistributed by this repository.
+
+Weights and datasets are not included. Their upstream terms apply independently.
