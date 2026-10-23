@@ -15,7 +15,8 @@ __pycache__/
 *.tar*
 **/checkpoints/
 **/outputs/
-**/models/
+/models/
+/reproduction/models/
 **/data/
 **/cache/
 **/logs/
