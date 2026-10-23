@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="440" viewBox="0 0 1440 440" role="img" aria-labelledby="title desc">
+<title id="title">PrismLoop-RL</title>
+<desc id="desc">Tool-Aware Reinforcement Learning for Visual Agents. Image and video, Python interaction, and GRPO.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1224"/><stop offset="1" stop-color="#17213b"/></linearGradient>
+<linearGradient id="prism" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#59e0c5"/><stop offset="1" stop-color="#9c94ff"/></linearGradient>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#c3d6ff" stroke-opacity=".05"/></pattern>
+</defs>
+<rect width="1440" height="440" rx="24" fill="url(#bg)"/>
+<rect width="1440" height="440" rx="24" fill="url(#grid)"/>
+<path d="M0 438H1440" stroke="url(#prism)" stroke-width="4"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<rect x="66" y="53" width="8" height="8" rx="4" fill="#59e0c5"/>
+<text x="87" y="63" fill="#b2c1dc" font-size="14" letter-spacing="3">VISUAL AGENT LEARNING</text>
+<text x="64" y="174" fill="#f4f7ff" font-size="78" font-weight="750" letter-spacing="-3">PrismLoop<tspan fill="#72e1cf">-RL</tspan></text>
+<text x="68" y="226" fill="#c5d1e7" font-size="27">Tool-Aware Reinforcement Learning</text>
+<text x="68" y="265" fill="#c5d1e7" font-size="27">for Visual Agents</text>
+<g font-size="14" fill="#cbd6eb">
+<rect x="68" y="315" width="144" height="38" rx="19" fill="#ffffff" fill-opacity=".06" stroke="#40516e"/>
+<text x="140" y="339" text-anchor="middle">IMAGE + VIDEO</text>
+<rect x="224" y="315" width="166" height="38" rx="19" fill="#ffffff" fill-opacity=".06" stroke="#40516e"/>
+<text x="307" y="339" text-anchor="middle">PYTHON FEEDBACK</text>
+<rect x="402" y="315" width="100" height="38" rx="19" fill="#ffffff" fill-opacity=".06" stroke="#40516e"/>
+<text x="452" y="339" text-anchor="middle">GRPO</text>
+</g>
+<text x="68" y="398" fill="#8496b5" font-size="14">A PyVision-RL reproduction and extension project</text>
+</g>
+<g transform="translate(1120 208)">
+<circle r="143" fill="none" stroke="#8b9cbe" stroke-opacity=".18"/>
+<circle r="113" fill="none" stroke="#59e0c5" stroke-opacity=".25" stroke-dasharray="4 12"/>
+<path d="M-116-83 A143 143 0 0 1 132-55" fill="none" stroke="#a098ff" stroke-width="4"/>
+<path d="M126-68L136-50L116-52" fill="none" stroke="#a098ff" stroke-width="4"/>
+<path d="M116 83 A143 143 0 0 1-132 55" fill="none" stroke="#59e0c5" stroke-width="4"/>
+<path d="M-126 68L-136 50L-116 52" fill="none" stroke="#59e0c5" stroke-width="4"/>
+<path d="M0-85L88 64H-88Z" fill="url(#prism)" fill-opacity=".12" stroke="url(#prism)" stroke-width="3"/>
+<path d="M0-85V16L88 64M0 16L-88 64" fill="none" stroke="url(#prism)" stroke-width="2"/>
+<circle cy="16" r="13" fill="#c7fff0"/>
+</g>
+</svg>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="470" viewBox="0 0 1440 470" role="img" aria-labelledby="title desc">
+<title id="title">Interaction to policy improvement</title>
+<desc id="desc">Image or video questions enter a reasoning and Python feedback loop. Outcome and tool rewards guide source-aware selection, GRPO optimization, and benchmark audits.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#7b88a4"/></marker></defs>
+<rect width="1440" height="470" rx="20" fill="#f6f8fc"/>
+<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<text x="42" y="48" font-size="14" font-weight="700" fill="#63718b" letter-spacing="2">INTERACTION → TRAINING → EVIDENCE</text>
+<g fill="white" stroke="#dce3ef" stroke-width="1.5">
+<rect x="42" y="90" width="222" height="234" rx="16"/>
+<rect x="300" y="90" width="390" height="234" rx="16"/>
+<rect x="726" y="90" width="310" height="234" rx="16"/>
+<rect x="1072" y="90" width="326" height="234" rx="16"/>
+</g>
+<g font-size="12" font-weight="700" letter-spacing="1.5">
+<text x="64" y="124" fill="#63718b">01 / INPUT</text>
+<text x="322" y="124" fill="#63718b">02 / INTERACT</text>
+<text x="748" y="124" fill="#63718b">03 / SIGNAL</text>
+<text x="1094" y="124" fill="#63718b">04 / UPDATE</text>
+</g>
+<g font-size="21" fill="#17213b" font-weight="700">
+<text x="64" y="165">Visual questions</text>
+<text x="322" y="165">Reason · Execute · Observe</text>
+<text x="748" y="165">Reward + selection</text>
+<text x="1094" y="165">GRPO + FSDP</text>
+</g>
+<g font-size="16" fill="#52617c">
+<text x="64" y="206">Image or video</text><text x="64" y="236">Task source + target</text>
+<text x="322" y="206">Policy → Python → feedback</text><text x="322" y="236">Repeat until a final answer</text>
+<text x="748" y="206">Final-answer scoring</text><text x="748" y="236">Bounded tool bonuses</text><text x="748" y="266">Source-aware group selection</text>
+<text x="1094" y="206">Selected rollout trajectories</text><text x="1094" y="236">Policy parameter updates</text><text x="1094" y="266">Checkpoint + export audits</text>
+</g>
+<rect x="322" y="266" width="190" height="29" rx="14" fill="#e8f8f2"/><text x="417" y="286" text-anchor="middle" fill="#16735d" font-size="13">8 trajectories / question</text>
+<g stroke="#7b88a4" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M264 208H292"/><path d="M690 208H718"/><path d="M1036 208H1064"/><path d="M1235 324V356H495V332"/></g>
+<text x="865" y="350" fill="#63718b" font-size="13">updated policy</text>
+<rect x="42" y="386" width="1356" height="52" rx="12" fill="#17213b"/>
+<text x="65" y="419" fill="#c8d5ec" font-size="16">Evidence layer</text>
+<text x="247" y="419" fill="#f1f5fc" font-size="16">VStar · HRBench · VSI</text>
+<text x="602" y="419" fill="#c8d5ec" font-size="16">Same-start controls · component ablations · protocol checks</text>
+</g></svg>

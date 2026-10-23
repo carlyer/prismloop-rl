@@ -1,59 +1,93 @@
-# Multimodal Agentic RL
+<div align="center">
 
-A personal reproduction and extension of **PyVision-RL** for image and video agents that reason, execute Python tools, inspect observations, and produce answers. Built on the upstream PyVision-RL / verl training stack; this repository does not claim authorship of that stack.
+<img src="assets/banner.svg" alt="PrismLoop-RL — Tool-Aware Reinforcement Learning for Visual Agents" width="100%" />
 
-## What this project adds
+# PrismLoop-RL
 
-- Strict extraction of final numeric answers for video reward calculation, with malformed-answer guards.
-- Source-aware selection of rollout groups, with within-source reward-variance ranking and quota diagnostics.
-- Bounded tool rewards for successful, nonempty, nonduplicate executions. This is a quality heuristic, not a proof that a tool call helped solve the task.
-- Spawn-based tool workers and bounded cleanup to reduce stalled execution.
-- Explicit feature switches for original-algorithm controls, individual components, and factorial ablations.
-- Checkpoint weight/optimizer-update audits, model-export validation, full-record evaluation audits, and protocol comparisons.
-- Separate PPO epochs=1 / epochs=2 experiments and image/video evaluation queues.
+**Tool-Aware Reinforcement Learning for Visual Agents**
 
-## Measured results
+Train image and video agents through a loop of reasoning, Python execution, and visual feedback.
 
-Percentages under this project's server evaluation protocol, including a local 32B judge. These are not copied paper results. VStar uses avg@32; VSI uses the released eight-task macro average.
+[![Python](https://img.shields.io/badge/Python-3.10-3776AB?style=flat-square&logo=python&logoColor=white)](docs/REPRODUCTION.md)
+[![Training](https://img.shields.io/badge/Training-GRPO-7C3AED?style=flat-square)](docs/METHOD.md)
+[![Modalities](https://img.shields.io/badge/Modalities-Image%20%2B%20Video-0891B2?style=flat-square)](docs/METHOD.md)
+[![License](https://img.shields.io/badge/License-MIT-16A34A?style=flat-square)](LICENSE)
 
-| Model | VStar | HRBench-4K | VSI macro |
+[中文介绍](README.zh-CN.md) · [Method](docs/METHOD.md) · [Experiments](docs/EXPERIMENTS.md) · [Reproduction](docs/REPRODUCTION.md) · [Roadmap](docs/ROADMAP.md)
+
+</div>
+
+## From seeing to acting
+
+A visual agent can crop an image, inspect video frames, calculate a quantity, and use the result to decide what to do next. Training that behavior requires more than an answer score: rewards must read the intended answer, selection must account for task mixtures, and tool execution must remain reliable.
+
+**PrismLoop-RL** is a personal research project that reproduces and extends [PyVision-RL](https://github.com/agents-x-project/PyVision-RL). It studies these training choices with explicit feature switches, short-run experiments, and auditable evaluations. The name pairs **Prism**, for visual inputs, with **Loop**, for interaction and policy improvement.
+
+<img src="assets/architecture.svg" alt="Visual inputs flow through agent interaction, reward and selection, GRPO updates, then benchmark audits" width="100%" />
+
+## What is implemented
+
+| Component | Design | Implementation |
+|---|---|---|
+| Final-answer rewards | Parse the final numeric answer before applying the existing MRA metric | [Answer extraction](verl_agents/verl/utils/reward_score/research_answer.py) |
+| Source-aware selection | Allocate source quotas and rank surviving question groups within each source | [Rollout selection](verl_agents/verl/trainer/ppo/research_selection.py) |
+| Tool-quality rewards | Credit successful, nonempty, distinct code/output pairs; cap repeated bonuses | [Tool reward](verl_agents/verl/workers/agent/envs/agents_x/research_tool_quality.py) |
+| Reliable interaction | Spawn tool workers and bound cleanup of stalled workers | [Worker cleanup](verl_agents/verl/workers/agent/envs/agents_x/research_worker_cleanup.py) |
+| Controlled experiments | Switch components independently; separate PPO epochs=1 and epochs=2 | [Training launcher](reproduction/scripts/run_training.py) |
+| Evidence checks | Audit parameter updates, exported weights, evaluation records, and protocol consistency | [Update audit](reproduction/scripts/validate_research_update.py) · [Evaluation audit](reproduction/scripts/evaluation_evidence.py) |
+
+These are extensions to the upstream training stack. The current evidence supports a reproducibility and experimental project; it does not establish a new state-of-the-art algorithm.
+
+## Experimental snapshot
+
+**40 additional rollout steps per experiment.** Image: step 20 → 60. Video: step 120 → 160. Scores are percentages under our server protocol with a local Qwen2.5-VL-32B judge. VStar uses avg@32; VSI uses the released eight-task macro average.
+
+| Model / experiment | VStar ↑ | HRBench-4K ↑ | VSI macro ↑ |
 |---|---:|---:|---:|
-| Official SFT | 68.80 | 63.38 | 35.71 |
-| Official released RL | 83.97 | 72.38 | 43.18 |
-| Server reproduction starting checkpoint | 70.14 | 66.00 | 35.98 |
-| Core improvements, +40 steps | 71.53 | 66.50 | 36.98 |
-| Core + PPO epochs=2, +40 steps | 71.65 | 68.75 | 37.52 |
+| Official SFT weights | 68.80 | 63.38 | 35.71 |
+| Official released RL weights | 83.97 | 72.38 | 43.18 |
+| Starting checkpoint, server reproduction | 70.14 | 66.00 | 35.98 |
+| Core extensions, +40 steps | 71.53 | 66.50 | 36.98 |
+| Core + PPO epochs=2, +40 steps | **71.65** | **68.75** | **37.52** |
 
-Image experiments start from step 20 and end at 60; video experiments start from step 120 and end at 160. Each modality starts from its own fixed checkpoint. Gains relative to the starting checkpoint include the effect of additional training. Same-budget original-algorithm controls and component ablations were pending when this publication snapshot was prepared; causal gains have not yet been established. PPO epochs=2 performs twice as many optimizer updates per rollout batch. No 700-step performance forecast is reported as a measured result.
+Bold marks the best extension run in this snapshot, not the best score across all models. The image and video columns correspond to separate models.
 
-The complete score snapshot is in [results/benchmark-results.csv](results/benchmark-results.csv). Some MVBench and TempCompass results are anomalous and need semantic/scoring-format investigation; passing record-coverage audits does not validate those scores as capability measurements. Single-seed, short-training results do not establish statistical significance.
+<img src="assets/short-run-gains.png" alt="Observed gains over starting checkpoints: core and PPO2 after 40 additional rollout steps. These are not same-budget causal method gains." width="100%" />
 
-## Repository layout
+**How to read the results.** Gains over the starting checkpoints include additional training. Same-budget original-algorithm controls and component ablations were pending in this snapshot. PPO epochs=2 performs twice as many optimizer updates per rollout batch. These single-seed runs do not establish statistical significance. Official released RL weights are references with unmatched training budgets.
 
-- `verl_agents/`: complete upstream training framework with the current extensions.
-- `configs/`: upstream training configurations.
-- `reproduction/scripts/`: preparation, training, evaluation, auditing, and experiment orchestration scripts.
-- `reproduction/requirements-runtime.txt`: runtime dependency pins.
-- `docs/UPSTREAM_README.md`: original PyVision-RL documentation and attribution.
-- `docs/source-provenance.json`: upstream revisions and file hashes for the source snapshot.
-- `results/`: aggregate scores, without raw benchmark records or private paths.
+[Full score table](results/benchmark-results.csv) · [Evaluation protocol and limitations](docs/EXPERIMENTS.md)
 
-## Setup and reproduction
+## Explore the project
 
-This is a source publication of the current research environment, **not yet a turnkey portable release**. The historical orchestration scripts contain host-specific paths, GPU assignments, ports, and recovery behavior. Review them before use; they must not be launched unchanged on a shared server.
+```text
+PrismLoop-RL/
+├── verl_agents/          # Upstream framework + current training extensions
+├── reproduction/scripts/ # Data preparation, training, evaluation, audits
+├── configs/              # Upstream configuration assets
+├── results/              # Aggregate measured benchmark scores
+├── assets/               # Project identity, pipeline, result visualization
+├── docs/                 # Method, experiments, reproduction, provenance
+└── scripts/              # Rebuild presentation assets
+```
 
-1. Use Linux, NVIDIA CUDA GPUs and Python 3.10. The validated environment used PyTorch 2.7, Transformers 4.54, vLLM 0.9.1 and Ray 2.47. Follow [the upstream setup](docs/UPSTREAM_README.md) and the pinned runtime requirements. Install the local package with `python -m pip install --no-deps -e ./verl_agents` after dependencies are installed.
-2. Obtain official model weights and datasets from the upstream sources under their respective terms. Prepare `reproduction/models/` and `reproduction/data/prepared/` using the preparation scripts. No model or benchmark data is bundled.
-3. The evaluation framework is an external dependency: obtain [PyVision-RL-Eval](https://github.com/agents-x-project/PyVision-RL-Eval), revision `9a756943702fb4b4b2cc7548f81a1e162a99d569`, in a sibling directory. Its source and datasets are not redistributed here; the checked revision has no LICENSE file.
-4. Copy `reproduction/judge-config.example.json` to `reproduction/judge-config.json`, verify the required schema against the judge client, and configure your own judge service. Keep credentials outside Git.
-5. Adapt interpreter paths and storage paths in `reproduction/scripts/run_training.py` and other launchers to your machine. The publication copy replaces private workspace paths with `/path/to/workspace` placeholders. Review `--help`, prepare assets, then run a smoke experiment before full training.
+Start with [the method](docs/METHOD.md) to understand the changes, then follow [the reproduction guide](docs/REPRODUCTION.md). The validated stack uses Python 3.10, PyTorch 2.7, Transformers 4.54, vLLM 0.9.1, Ray 2.47, and FSDP.
 
-Feature selection is explicit via `PYVISION_ABLATION_FEATURES`: an empty value selects the original algorithm with shared runtime fixes; comma-separated `numeric,quota,tool` enables the full core. Quota selection additionally requires the source-weight configuration supplied by the launcher. `run_training.py` exposes the corresponding variant choices. Inspect the resolved configuration before interpreting an ablation.
+**Release status:** research source snapshot. Historical launchers require machine-specific path and GPU configuration. Model weights and datasets are obtained separately. The evaluation framework is an external dependency. See the reproduction guide before launching jobs.
 
-The existing factorial controller was written for an eight-GPU shared server and fixed initial checkpoints. Its scratch-retention code removes only newly generated optimizer states after export and update validation; these compacted checkpoints cannot resume with the original optimizer. Do not use that controller without adapting its paths and retention policy.
+## Next experiments
 
-## Attribution and scope
+- Complete original-algorithm controls from identical starting checkpoints and the component factorial design.
+- Compare rollout steps, optimizer updates, generated tokens, and GPU time.
+- Extend promising configurations to longer training and multiple seeds.
+- Investigate spatial consistency, tool-repair credit, and adaptive rollout allocation as future directions.
 
-This repository builds on [PyVision-RL](https://github.com/agents-x-project/PyVision-RL) and its bundled verl/RAGEN-derived components. The original MIT license and source copyright notices are retained. See [THIRD_PARTY_NOTICES.txt](THIRD_PARTY_NOTICES.txt). Please credit and cite the upstream work when using this project.
+The last three research mechanisms are proposals, not implemented capabilities. [Detailed roadmap →](docs/ROADMAP.md)
 
-Proposed spatial-consistency, tool-repair-credit, and adaptive-rollout research directions are **not implemented** in this snapshot. Current contributions are reproducibility engineering and experimentally tested extensions; no novel-algorithm or state-of-the-art claim is made.
+## Built on open research
+
+PrismLoop-RL builds on **[PyVision-RL](https://github.com/agents-x-project/PyVision-RL)** and its bundled verl/RAGEN-derived training components. Original licenses and source notices are preserved. The original project documentation is available in [UPSTREAM_README.md](docs/UPSTREAM_README.md); exact revisions and snapshot hashes are recorded in [source-provenance.json](docs/source-provenance.json).
+
+[PyVision-RL-Eval](https://github.com/agents-x-project/PyVision-RL-Eval) is referenced as an external dependency and is not redistributed here. See [third-party notices](THIRD_PARTY_NOTICES.txt). Please credit and cite the upstream work when using this project.
+
+Maintained by [carlyer](https://github.com/carlyer) · [MIT license](LICENSE)
