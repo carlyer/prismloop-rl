@@ -9,7 +9,7 @@
 <rect width="1440" height="440" rx="24" fill="url(#bg)"/>
 <rect width="1440" height="440" rx="24" fill="url(#grid)"/>
 <path d="M0 438H1440" stroke="url(#prism)" stroke-width="4"/>
-<g font-family="Inter,Segoe UI,Arial,sans-serif">
+<g font-family="Inter,DejaVu Sans,Arial,sans-serif">
 <rect x="66" y="53" width="8" height="8" rx="4" fill="#59e0c5"/>
 <text x="87" y="63" fill="#b2c1dc" font-size="14" letter-spacing="3">VISUAL AGENT LEARNING</text>
 <text x="64" y="174" fill="#f4f7ff" font-size="78" font-weight="750" letter-spacing="-3">PrismLoop<tspan fill="#72e1cf">-RL</tspan></text>

@@ -25,6 +25,13 @@ A visual agent can crop an image, inspect video frames, calculate a quantity, an
 
 <img src="assets/architecture.svg" alt="Visual inputs flow through agent interaction, reward and selection, GRPO updates, then benchmark audits" width="100%" />
 
+## Project highlights
+
+- **End-to-end multimodal RL:** image/video preparation, interactive Python rollouts, FSDP training, validated checkpoint exports, and benchmark evaluation.
+- **Three implemented training extensions:** final-answer reward parsing, source-aware rollout selection, and bounded tool bonuses, each connected to its source implementation below.
+- **Six published extension evaluations:** core/PPO2 runs on VStar, HRBench-4K, and VSI; reproducible plotting from the aggregate score CSV.
+- **Evidence before claims:** audits verify actual parameter updates and full-record evaluation coverage; explicit feature switches support original-method controls and component ablations.
+
 ## What is implemented
 
 | Component | Design | Implementation |
@@ -57,6 +64,20 @@ Bold marks the best extension run in this snapshot, not the best score across al
 **How to read the results.** Gains over the starting checkpoints include additional training. Same-budget original-algorithm controls and component ablations were pending in this snapshot. PPO epochs=2 performs twice as many optimizer updates per rollout batch. These single-seed runs do not establish statistical significance. Official released RL weights are references with unmatched training budgets.
 
 [Full score table](results/benchmark-results.csv) · [Evaluation protocol and limitations](docs/EXPERIMENTS.md)
+
+## Expected results at 700 steps — forecast, not measured
+
+The following values are **subjective planning estimates**, conditional on continuing each modality to **total global step 700** under the same server evaluation protocol. They are not completed experiments, fitted learning-curve predictions, or statistical confidence intervals.
+
+| Benchmark | Original algorithm, 700 steps: estimated center | PrismLoop core + PPO2, 700 steps: estimated center | PrismLoop subjective plausible range |
+|---|---:|---:|---:|
+| VStar avg@32 | 81% | 82% | 77–86% |
+| HRBench-4K | 71% | 73% | 69–76% |
+| VSI eight-task macro | 41% | 43% | 39–46% |
+
+These estimates use the existing short-run scores and official released-weight references as qualitative anchors, assuming stable training and diminishing gains. They are not obtained by linear extrapolation, and improvement over the original algorithm is not guaranteed. Matching global steps does not match compute: PPO2 uses two optimizer updates per rollout batch. The estimates include only implemented core extensions and PPO epochs=2, excluding proposed research mechanisms. The original-algorithm estimates have no calibrated uncertainty range. No additional 700-step training is launched by publishing this table.
+
+[Forecast assumptions and limitations](docs/EXPERIMENTS.md#700-step-planning-forecast) · [Separate forecast CSV](results/700-step-forecasts.csv)
 
 ## Explore the project
 

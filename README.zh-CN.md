@@ -20,6 +20,13 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 
 <img src="assets/architecture.svg" alt="视觉输入、工具交互、奖励与样本选择、GRPO 更新和评测审计流程" width="100%" />
 
+## 项目亮点
+
+- **贯通训练与评测：** 覆盖图像/视频数据准备、多轮 Python 交互 rollout、FSDP 训练、checkpoint 导出与 benchmark 评测。
+- **三个已实现的训练扩展：** 最终答案奖励解析、数据源配额与问题组选择、有上限的工具奖励；下表可直接找到实现位置与设计目的。
+- **六项扩展实验评测：** 核心方案与 PPO2 在 VStar、HRBench-4K、VSI 上已有实测；结果图从公开 CSV 生成。
+- **可核验的实验过程：** 检查权重和优化器是否更新，核对评测记录与协议；同期对照和组件消融通过显式开关编排。
+
 ## 已完成的工作
 
 | 方向 | 设计出发点 | 当前实现 |
@@ -52,6 +59,20 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 **结果边界：** 相对起点的提升同时包含继续训练的收益；本发布快照尚未纳入同期原方法对照及完整消融结果。PPO epochs=2 的参数更新次数是 epochs=1 的两倍。当前是单随机种子短程实验，尚不能宣称统计显著、达到 SOTA，或全面优于原方法。官方发布 RL 权重的训练预算没有与本实验对齐。
 
 [全部结果](results/benchmark-results.csv) · [评测协议与异常说明](docs/EXPERIMENTS.md)
+
+## 700 步预期结果（预测，尚未实测）
+
+以下按 Image、Video 各自继续训练到**总计第 700 个 global step**、沿用服务器当前评测协议进行估计。数值是用于规划实验的**主观预测**，不是已经完成的实验结果、学习曲线拟合结果或统计置信区间。
+
+| Benchmark | 原方法 700 步：中心预测 | PrismLoop 核心扩展 + PPO2，700 步：中心预测 | PrismLoop 主观合理区间 |
+|---|---:|---:|---:|
+| VStar avg@32 | 81% | 82% | 77～86% |
+| HRBench-4K | 71% | 73% | 69～76% |
+| VSI，8 类任务宏平均 | 41% | 43% | 39～46% |
+
+预测参考现有短程实测和官方发布权重的成绩，假设训练稳定、后续收益逐渐减小，没有按前 40 步涨幅做线性外推。相对原方法的提升仍可能为零或负值；原方法中心预测尚无校准后的不确定性区间。相同步数不等于相同计算预算，PPO2 每批 rollout 更新两次参数。预测只包含已实现的核心扩展与 PPO epochs=2，不计入尚未实现的科研方向。发布此表不会启动额外的 700 步训练。
+
+[预测假设与限制](docs/EXPERIMENTS.md#700-step-planning-forecast) · [独立预测 CSV](results/700-step-forecasts.csv)
 
 ## 如何使用
 

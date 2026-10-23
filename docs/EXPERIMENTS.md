@@ -51,3 +51,13 @@ python scripts/render_project_assets.py
 ```
 
 The plotting script reads the published CSV and calculates deltas from the matching starting checkpoints. No extrapolated or pending score is plotted.
+
+## 700-step planning forecast
+
+The overview includes subjective forecast centers for the original algorithm (VStar 81%, HRBench-4K 71%, VSI macro 41%) and the implemented core extensions with PPO epochs=2 (82%, 73%, 43%). The extension ranges are respectively 77–86%, 69–76%, and 39–46%. These are planning judgments, not measurements or calibrated probability intervals. The original-algorithm forecast has no calibrated interval.
+
+The target is **total global step 700**, including prior training. The historical starting checkpoints are image step 20 and video step 120. A continuation from those checkpoints therefore requires 680 and 580 additional rollout steps respectively; from the current short-run endpoints, 640 and 540 remain. PPO2 is applied during extension training, while the starting checkpoints retain their original training history.
+
+Assumptions are stable training, unchanged evaluation, and diminishing returns. The estimates are informed qualitatively by the short-run observations and official released weights; there is no fitted extrapolation model or empirical uncertainty calibration. Unknown original-algorithm control outcomes, reward overfitting, plateauing, and regression can all invalidate the centers and ranges. The official released weights are not equal-budget controls. Revise the forecast after matched controls and intermediate checkpoints are evaluated.
+
+Forecasts are stored separately in [700-step-forecasts.csv](../results/700-step-forecasts.csv). They are excluded from the measured-results CSV and result figure, and do not authorize or launch longer training. Proposed spatial consistency, tool repair, and adaptive allocation methods are excluded.
