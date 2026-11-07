@@ -29,7 +29,7 @@ A visual agent can crop an image, inspect video frames, calculate a quantity, an
 
 - **End-to-end multimodal RL:** image/video preparation, interactive Python rollouts, FSDP training, validated checkpoint exports, and benchmark evaluation.
 - **Three implemented training extensions:** final-answer reward parsing, source-aware rollout selection, and bounded tool bonuses, each connected to its source implementation below.
-- **Six published extension evaluations:** core/PPO2 runs on VStar, HRBench-4K, and VSI; reproducible plotting from the aggregate score CSV.
+- **Eight published extension evaluations:** core/PPO2 runs on VStar, HRBench-4K, HRBench-8K, and VSI, within a 40-row measured-results snapshot.
 - **Evidence before claims:** audits verify actual parameter updates and full-record evaluation coverage; explicit feature switches support original-method controls and component ablations.
 
 ## What is implemented
@@ -47,17 +47,19 @@ These are extensions to the upstream training stack. The current evidence suppor
 
 ## Experimental snapshot
 
+**Evidence synchronized on 2026-11-07.** This update adds two HRBench-8K extension evaluations and seven completed official Image SFT benchmark evaluations. It publishes archived continuation/control status separately from measured scores. Nine newly added results were checked against their per-question records and archived completion audits; no training or inference was rerun. [Snapshot provenance](results/snapshot-provenance.json).
+
 **40 additional rollout steps per experiment.** Image: step 20 → 60. Video: step 120 → 160. Scores are percentages under our server protocol with a local Qwen2.5-VL-32B judge. VStar uses avg@32; VSI uses the released eight-task macro average.
 
-| Model / experiment | VStar ↑ | HRBench-4K ↑ | VSI macro ↑ |
-|---|---:|---:|---:|
-| Official SFT weights | 68.80 | 63.38 | 35.71 |
-| Official released RL weights | 83.97 | 72.38 | 43.18 |
-| Starting checkpoint, server reproduction | 70.14 | 66.00 | 35.98 |
-| Core extensions, +40 steps | 71.53 | 66.50 | 36.98 |
-| Core + PPO epochs=2, +40 steps | **71.65** | **68.75** | **37.52** |
+| Model / experiment | VStar ↑ | HRBench-4K ↑ | HRBench-8K ↑ | VSI macro ↑ |
+|---|---:|---:|---:|---:|
+| Official SFT weights | 68.80 | 63.38 | 58.13 | 35.71 |
+| Official released RL weights | 83.97 | 72.38 | — | 43.18 |
+| Starting checkpoint, server reproduction | 70.14 | 66.00 | — | 35.98 |
+| Core extensions, +40 steps | 71.53 | 66.50 | **60.88** | 36.98 |
+| Core + PPO epochs=2, +40 steps | **71.65** | **68.75** | 60.25 | **37.52** |
 
-Bold marks the best extension run in this snapshot, not the best score across all models. The image and video columns correspond to separate models.
+Bold marks the best extension run in this snapshot, not the best score across all models. The image and video columns correspond to separate models. A dash means no published result, not zero. PPO2 is 0.625 percentage points below core on HRBench-8K; it does not improve every benchmark. No HRBench-8K starting-checkpoint measurement is available, so no gain over that starting checkpoint is claimed.
 
 <img src="assets/short-run-gains.png" alt="Observed gains over starting checkpoints: core and PPO2 after 40 additional rollout steps. These are not same-budget causal method gains." width="100%" />
 
@@ -65,9 +67,24 @@ Bold marks the best extension run in this snapshot, not the best score across al
 
 [Full score table](results/benchmark-results.csv) · [Evaluation protocol and limitations](docs/EXPERIMENTS.md)
 
-## Expected results at 700 steps — forecast, not measured
+## Longer training and control status
 
-The following values are **subjective planning estimates**, conditional on continuing each modality to **total global step 700** under the same server evaluation protocol. They are not completed experiments, fitted learning-curve predictions, or statistical confidence intervals.
+The four implemented image/video core/PPO2 runs were continued toward **total step 700**, resuming the model, optimizer, RNG and dataloader state. The latest available training snapshot was observed on **2026-10-27 at 12:29:43 UTC**; this is historical evidence, not a live process view.
+
+| Run | Last completed step in snapshot | Latest saved step | Recorded state |
+|---|---:|---:|---|
+| Image PPO2 | 311 | 301 | training |
+| Image core | 401 | 401 | queued |
+| Video PPO2 | 401 | 401 | queued |
+| Video core | 401 | 401 | queued |
+
+The referenced temporary runtime directories were unavailable at synchronization time. The archived 200/400-step evaluation queue has no measured scores, and no completed 700-step evaluation is available. The short factorial queue was deferred for long continuations; same-budget original controls still lack published scores. Training counters and queued evaluations are not benchmark results.
+
+[Training snapshot](results/continuation-training-snapshot.json) · [Milestone evaluation status](results/continuation-evaluation-status.csv) · [Controlled ablation status](results/controlled-ablation-status.csv)
+
+## Historical 700-step planning forecast — not measured
+
+The following previously published values are retained as **historical subjective planning estimates**, conditional on continuing each modality to **total global step 700** under the same server evaluation protocol. They have not been updated or validated by this synchronization. They are not completed experiments, fitted learning-curve predictions, or statistical confidence intervals.
 
 | Benchmark | Original algorithm, 700 steps: estimated center | PrismLoop core + PPO2, 700 steps: estimated center | PrismLoop subjective plausible range |
 |---|---:|---:|---:|
@@ -100,7 +117,7 @@ Start with [the method](docs/METHOD.md) to understand the changes, then follow [
 
 - Complete original-algorithm controls from identical starting checkpoints and the component factorial design.
 - Compare rollout steps, optimizer updates, generated tokens, and GPU time.
-- Extend promising configurations to longer training and multiple seeds.
+- Complete and evaluate the archived long-continuation study, then add multiple seeds.
 - Investigate spatial consistency, tool-repair credit, and adaptive rollout allocation as future directions.
 
 The last three research mechanisms are proposals, not implemented capabilities. [Detailed roadmap →](docs/ROADMAP.md)

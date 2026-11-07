@@ -55,3 +55,19 @@ A 40-step comparison matches rollout steps. It does not match optimizer updates,
 ## Verification
 
 The scripts audit actual weight changes and optimizer counters, validate merged BF16 weights, and compare evaluation protocols and record coverage. These checks validate execution evidence. They do not establish scientific novelty, judge correctness, or significance by themselves.
+
+## Experiment phases and continuation protocol
+
+Evidence synchronization date: **2026-11-07**. The three method modules linked above match the archived controlled-ablation source. This update documents later experimental evidence; it does not introduce an additional learning algorithm.
+
+| Phase | Image starting → target step | Video starting → target step | Comparison |
+|---|---|---|---|
+| Completed short runs | 20 → 60 | 120 → 160 | Core versus PPO2 from the same state within each modality |
+| Component design | 20 → 60 | 120 → 160 | Image 2² quota/tool cells; video 2³ numeric/quota/tool cells; PPO epochs=1 |
+| Long continuations | 60 → 700 | 160 → 700 | Continue each of the four trained core/PPO2 branches |
+
+Short-run and controlled experiments restore the initial model, optimizer, RNG and dataloader state within each modality. Long runs preserve each method's own history and resume complete saved state, with milestone targets at total steps 200, 400 and 700. They are continuation experiments, not fresh same-start training from SFT. A restart can replay work after the last committed checkpoint; the public snapshot separates completed/logged steps from saved steps.
+
+The archived continuation configuration retains learning rate 1e-6, eight trajectories per question, 128 selected trajectories and the existing core/PPO2 feature definitions. Checkpoints are scheduled every 20 steps plus the first new update. Intermediate exports and full benchmark evaluation are separate jobs. Changing the training target or observing a saved checkpoint does not produce an evaluation score.
+
+The long runs were given priority over the remaining short component cells. Their execution orchestration and GPU assignments were host-specific; this source release does not treat historical process IDs or unavailable temporary paths as reproducible launch instructions. See [the historical training snapshot](../results/continuation-training-snapshot.json) and [experiment evidence](EXPERIMENTS.md) for the exact available status.

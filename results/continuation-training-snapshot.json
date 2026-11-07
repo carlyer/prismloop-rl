@@ -1,0 +1,53 @@
+{
+  "synchronized_on": "2026-11-07",
+  "observed_utc": "2026-10-27T12:29:43Z",
+  "is_live_status": false,
+  "runtime_links_available_at_sync": false,
+  "interpretation": "Historical training progress, not completed benchmark scores. Referenced temporary runtime links are unavailable in the synchronization environment. No step-700 evaluation is available in this evidence snapshot.",
+  "jobs": [
+    {
+      "id": "image-ppo2",
+      "kind": "image",
+      "method": "ppo2",
+      "status": "training",
+      "initial_step": 60,
+      "target_step": 700,
+      "last_completed_step": 311,
+      "latest_saved_step": 301,
+      "current_segment_target": 400
+    },
+    {
+      "id": "video-ppo2",
+      "kind": "video",
+      "method": "ppo2",
+      "status": "queued",
+      "initial_step": 160,
+      "target_step": 700,
+      "last_completed_step": 401,
+      "latest_saved_step": 401,
+      "current_segment_target": 700
+    },
+    {
+      "id": "image-core",
+      "kind": "image",
+      "method": "core",
+      "status": "queued",
+      "initial_step": 60,
+      "target_step": 700,
+      "last_completed_step": 401,
+      "latest_saved_step": 401,
+      "current_segment_target": 700
+    },
+    {
+      "id": "video-core",
+      "kind": "video",
+      "method": "core",
+      "status": "queued",
+      "initial_step": 160,
+      "target_step": 700,
+      "last_completed_step": 401,
+      "latest_saved_step": 401,
+      "current_segment_target": 700
+    }
+  ]
+}

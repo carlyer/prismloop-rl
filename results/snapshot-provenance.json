@@ -1,0 +1,152 @@
+{
+  "synchronized_on": "2026-11-07",
+  "previous_public_commit": "f3cca2d3fd01ce0d5d1640b72cd9b634d777fdfc",
+  "measured_rows": 40,
+  "previously_published_rows_retained": 31,
+  "new_measured_rows": 9,
+  "scope": "Archived aggregates and evidence only; no inference or training was rerun. Existing 31 published rows and anomaly notes are retained. New rows were checked against archived invocation, completion audit, summary and per-question records.",
+  "new_result_checks": [
+    {
+      "run": "supplementary-image-core-hrbench8-20261023-hrbench-8k",
+      "source_relative_to_reproduction": "research/20261023-controlled-ablations/evidence/outputs/supplementary-image-core-hrbench8-20261023-hrbench-8k",
+      "summary_sha256": "5a726b27bd1d609447ab263ff53fe886093423eb60e011eebb9f5260028b838f",
+      "invocation_file_sha256": "1a563b9fda84d6393dc5b3a3417686a1476115e043bb805cceae0ad20a091429",
+      "record_invocation_sha256": "4273836acdf5d60011510294f14cdc34c4154ed91825c4826d090cb0a7d60f6b",
+      "archived_full_input_audit_sha256": "ae9a60070cf097e934f568f52e91ea905a14634223841b29ab6dae3e04241df1",
+      "data_sha256": "7d6b14af8f240c2c481fcdb6a9a4786769c93a8824de213f0b211951ead513de",
+      "records_rechecked": 800,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "supplementary-image-ppo2-hrbench8-20261023-hrbench-8k",
+      "source_relative_to_reproduction": "research/20261023-controlled-ablations/evidence/outputs/supplementary-image-ppo2-hrbench8-20261023-hrbench-8k",
+      "summary_sha256": "98ac5032090a3f644bebb881f8a8ab610855329a50cad195286ca43f975f8b84",
+      "invocation_file_sha256": "374267513fdc5cb05addb632d416ecb0880f00f185607c17f1f829e125eec500",
+      "record_invocation_sha256": "8c6a682391300df67230254973d241248c315310a6342e1726dcd2c55bc11836",
+      "archived_full_input_audit_sha256": "bc138caa53fae0a5d747e6e239bf3fe7b9184fc8d64c9320ffae601971f319b3",
+      "data_sha256": "7d6b14af8f240c2c481fcdb6a9a4786769c93a8824de213f0b211951ead513de",
+      "records_rechecked": 800,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-charxiv-descriptive",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-charxiv-descriptive",
+      "summary_sha256": "49e63db7dd1bcfdbd6b681e1979bfb933048b5582f4f197f26d4e67dbd1169b3",
+      "invocation_file_sha256": "892e61cb36e1f78897485a7b609a82b0398132cc45407bd4930f833d0be0b333",
+      "record_invocation_sha256": "0b41269f75e7b31ca2916cb1f9196a894759aed54719ce23560fb360f5db03d8",
+      "archived_full_input_audit_sha256": "86d6fbedeb71da18f86a9b73721b5be77c8a0704350508bcdaeac9b6a59cab2c",
+      "data_sha256": "e151cffa319c90d9240afa9a7c533516efccaae431129727ae4af1734cec52bf",
+      "records_rechecked": 4000,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-charxiv-reasoning",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-charxiv-reasoning",
+      "summary_sha256": "8f490e1ccc92228d9f964c235a7184000409cf22f92707851dd7e02c4bd6c69d",
+      "invocation_file_sha256": "26a9ab329c881ab806ac5d46fe85563de4185165055a14cbf0bcd64ea66812ef",
+      "record_invocation_sha256": "ff5f0700b4f4d0dbb311392452f6398ba584996ef84058d189af93b77cc926f3",
+      "archived_full_input_audit_sha256": "7e581f765091d0ccf58f864f1c87a284459129cf961acc0a6eba6727cbc3bdbf",
+      "data_sha256": "408aa1e893df511c4e4635c0ec718c9815b1a30c33ce8014b0887d7effc808ea",
+      "records_rechecked": 1000,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-mathvision",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-mathvision",
+      "summary_sha256": "582e377071fb77fe75fedf79b9c377df5b2201078685c1471e5b051dc4133b6c",
+      "invocation_file_sha256": "d3537e2c774ee1b20e34b563f4d9d751751755df4ba693e01827121bbd87a5f7",
+      "record_invocation_sha256": "de9adf367591849c271f3e047a946db3fac780c6268b450afe982af6e895e331",
+      "archived_full_input_audit_sha256": "11b893311baf287136bc270da425a5211ebad06b9bef57edd5fd8ba86c985a42",
+      "data_sha256": "5b652a4a99ff6033084ab087afd122a6fd67a83400e8f550c90f88800772be4e",
+      "records_rechecked": 3040,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-mathvista",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-mathvista",
+      "summary_sha256": "dd9b8cec3d800ff6c1afed050d3add9c8649c8a2a8c9674055523bf7de38b9d6",
+      "invocation_file_sha256": "4047d63b0c011af7c7f2b5cc44a0bd9577144d37487e7dd16a332bc8c4837954",
+      "record_invocation_sha256": "868225900fe4dce6c8a6c14cc9ea9a49da90ee2d6e137be8c29b3c2c5a34c2d2",
+      "archived_full_input_audit_sha256": "9f77c62109430e491f88130a80e721265e08047ad60aa5514866a269efc96d70",
+      "data_sha256": "e83ea4e1b8e29b23b3729f276495ed3423572bbdf9c717866db51d683a5ecb23",
+      "records_rechecked": 1000,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-mmmu",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-mmmu",
+      "summary_sha256": "dc6c1288ad0e70e0b0ab6a8f5f2e7aeabf771c36a0e07e961acabbb6dba92205",
+      "invocation_file_sha256": "4c833ebec326e70ffebe1f889b15d5469ccfda14404ff3e242ecc9d98a323390",
+      "record_invocation_sha256": "3d008ee5bda7d72d4b122ed34504170d50ad145286e2a41e75489645f491fdc6",
+      "archived_full_input_audit_sha256": "b67218f29d334827a65fdaaaa80ec6d72aa5d069c9dce046457a4ae5d2b64957",
+      "data_sha256": "c6b82aca5f8794747cb6462e54721d683baecc330e18b33eba2d33a6b0923bc9",
+      "records_rechecked": 900,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-tirbench",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-tirbench",
+      "summary_sha256": "7f91a80d07b21e2e7f6c374de31d769026fc68b0d29f2488c0f06ff0abe8d288",
+      "invocation_file_sha256": "bb010047e0a21af3eda6fa519897f16b678f325098cadc9ae5bab2be51d1698c",
+      "record_invocation_sha256": "405ba122b7c98d513ec5bdea6d5326b17e67d7068764fd6b9dee267028cf2377",
+      "archived_full_input_audit_sha256": "0629c16823c67865779555c4cea51381ddd23ceecd7832ce1cb67a3df2d430cc",
+      "data_sha256": "b2b5d763ba172768f0f0f9c623527270c5b105b94b58fee6a3bd979743f05fa1",
+      "records_rechecked": 1215,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    },
+    {
+      "run": "official-image-sft-control-wemath",
+      "source_relative_to_reproduction": "recovery/20261019T142145Z/ongoing-local-runtime-results/official-image-sft-control-wemath",
+      "summary_sha256": "243d44d73c88c001231cca4f0a1581683849f673b8ea1e9f0e5e4fe924028c15",
+      "invocation_file_sha256": "c6b3e5ce13d3e2820558602aa12f92cb8e35ba6d954f3bfd7294d9303a91e63d",
+      "record_invocation_sha256": "e9cdeecc0e8d58de05b7998d1a14ee00258c443df994a834ea33f9fc69d553f0",
+      "archived_full_input_audit_sha256": "92910d864cec6981de12a3a2d990d5d93771f304bac994d5d41ffb85b5c8b48a",
+      "data_sha256": "e58ea7f468e04a8bcb15878a9e3c81a66ed5f36971c30ecfd3c0580725804045",
+      "records_rechecked": 1740,
+      "scope": "Rechecked unique question/repeat coverage, record provenance, finite scores, failures and category/overall means. Original input membership relies on the archived passed full-input audit; the original prepared input was not re-hashed in this sync."
+    }
+  ],
+  "source_files": [
+    {
+      "path_relative_to_reproduction": "research/20261023-controlled-ablations/evidence/all-model-results-with-ablations.csv",
+      "sha256": "ee741370210d68b26f9193c4edb3212ef857839c1cc436d5aff215c9345d255c"
+    },
+    {
+      "path_relative_to_reproduction": "research/20261023-controlled-ablations/evidence/controlled-ablation-results.csv",
+      "sha256": "9ec7310fc5b4e51fceea32cc55f7c1582695dce5adf1819857595675c6fdfa66"
+    },
+    {
+      "path_relative_to_reproduction": "research/20261023-weekend-700/evidence/weekend-results.csv",
+      "sha256": "1426784f28b04a7e5ae578a154d311e13a9c2bb480f1c550384d86405c495c0e"
+    },
+    {
+      "path_relative_to_reproduction": "research/20261023-weekend-700/evidence/manifests/weekend-training-status.json",
+      "sha256": "e11072f6e91d738f900f605827553574d5b86aa67074fde453645f57ca1df780"
+    }
+  ],
+  "published_data_sha256": {
+    "results/benchmark-results.csv": "4fb10d031e51177cd806ab201bae4601216c2d700d563aa18ca150b93d1dbfe8",
+    "results/controlled-ablation-status.csv": "57d63921df2e44ca5560538be3212ddca81492fef2b2934db09feb1cb8182538",
+    "results/continuation-evaluation-status.csv": "70a5bf29f1a174ff1c0b6f0dca9de1f5b61c5a08663b8ac1bda50289447f4d9a",
+    "results/continuation-training-snapshot.json": "2f0c0a30c8738b2c57696e97d4a1f8382f5acdcfc6d378f0b097379052d02ac6"
+  },
+  "privacy": "Host paths, service configuration, process IDs, model weights, raw prompts and per-question outputs are omitted from published snapshots.",
+  "method_source_checks": [
+    {
+      "path": "verl_agents/verl/trainer/ppo/research_selection.py",
+      "sha256": "2a8ba19c063e0d21e9716830720deb7751362228aeaca33cd80713118be91fd3",
+      "matches_controlled_source_archive": true
+    },
+    {
+      "path": "verl_agents/verl/utils/reward_score/research_answer.py",
+      "sha256": "b6569d7c0a8324601450342a8be29e58513cebbd20ab3478db0d149d2a35d073",
+      "matches_controlled_source_archive": true
+    },
+    {
+      "path": "verl_agents/verl/workers/agent/envs/agents_x/research_tool_quality.py",
+      "sha256": "7e00c1238621ab99f494297516f1322d185c88b1dab8fa5cbc811f291d0e7139",
+      "matches_controlled_source_archive": true
+    }
+  ],
+  "method_archive_sha256": "574831efc88c5b11eebb1612019231231c2159ce1cf6490f79d1e9568be387cd"
+}

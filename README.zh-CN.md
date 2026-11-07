@@ -24,7 +24,7 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 
 - **贯通训练与评测：** 覆盖图像/视频数据准备、多轮 Python 交互 rollout、FSDP 训练、checkpoint 导出与 benchmark 评测。
 - **三个已实现的训练扩展：** 最终答案奖励解析、数据源配额与问题组选择、有上限的工具奖励；下表可直接找到实现位置与设计目的。
-- **六项扩展实验评测：** 核心方案与 PPO2 在 VStar、HRBench-4K、VSI 上已有实测；结果图从公开 CSV 生成。
+- **八项扩展实验评测：** 核心方案与 PPO2 在 VStar、HRBench-4K、HRBench-8K、VSI 上已有实测；当前汇总包含 40 行实测结果。
 - **可核验的实验过程：** 检查权重和优化器是否更新，核对评测记录与协议；同期对照和组件消融通过显式开关编排。
 
 ## 已完成的工作
@@ -42,17 +42,19 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 
 ## 当前实测结果
 
+**归档证据同步日期：2026-11-07。** 本次补入两项 HRBench-8K 改进实验，以及七项已完成的官方 Image SFT 评测；另行发布长期续训与消融状态。新增九项结果已核对逐题记录和归档验收文件，本次没有重新训练或推理。详见[同步来源与校验记录](results/snapshot-provenance.json)。
+
 每个实验新增 **40 个 rollout global step**。Image 从第 20 步到第 60 步；Video 从第 120 步到第 160 步。下面使用服务器统一评测条件与本机 32B judge，数值为百分比；VStar 为 avg@32，VSI 为 8 类任务宏平均。
 
-| 模型 / 实验 | VStar ↑ | HRBench-4K ↑ | VSI 宏平均 ↑ |
-|---|---:|---:|---:|
-| 官方 SFT 权重 | 68.80 | 63.38 | 35.71 |
-| 官方发布的 RL 权重 | 83.97 | 72.38 | 43.18 |
-| 服务器复现原方法的起点 checkpoint | 70.14 | 66.00 | 35.98 |
-| 核心扩展，新增 40 步 | 71.53 | 66.50 | 36.98 |
-| 核心扩展 + PPO epochs=2，新增 40 步 | **71.65** | **68.75** | **37.52** |
+| 模型 / 实验 | VStar ↑ | HRBench-4K ↑ | HRBench-8K ↑ | VSI 宏平均 ↑ |
+|---|---:|---:|---:|---:|
+| 官方 SFT 权重 | 68.80 | 63.38 | 58.13 | 35.71 |
+| 官方发布的 RL 权重 | 83.97 | 72.38 | — | 43.18 |
+| 服务器复现原方法的起点 checkpoint | 70.14 | 66.00 | — | 35.98 |
+| 核心扩展，新增 40 步 | 71.53 | 66.50 | **60.88** | 36.98 |
+| 核心扩展 + PPO epochs=2，新增 40 步 | **71.65** | **68.75** | 60.25 | **37.52** |
 
-粗体只表示当前扩展实验中最高的结果。Image 与 Video 对应不同模型。
+粗体只表示当前扩展实验中最高的结果。Image 与 Video 对应不同模型；“—”表示未发布成绩，不是零分。PPO2 在 HRBench-8K 上比 core 低 0.625 个百分点，并非所有评测都提升。没有该评测的起点 checkpoint 成绩，因此不计算相对起点的收益。
 
 <img src="assets/short-run-gains.png" alt="新增 40 步后相对训练起点的观测提升，不代表同预算下方法的净收益" width="100%" />
 
@@ -60,9 +62,26 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 
 [全部结果](results/benchmark-results.csv) · [评测协议与异常说明](docs/EXPERIMENTS.md)
 
-## 700 步预期结果（预测，尚未实测）
+本次新增的官方 Image SFT 结果为：完整 MathVision **21.25%**（3,040 题）、MathVista **54.20%**（1,000 题）、MMMU **50.89%**（900 题）、WeMath **61.44%**（1,740 题）、TIR-Bench **18.77%**（1,215 题）、CharXiv reasoning **36.30%**（1,000 题）、CharXiv descriptive **65.40%**（4,000 题）。它们是 SFT 参考成绩，不代表改进方法在这些数据集上已经完成评测。MathVision 完整集与 mini 的 304 题、22.70% 单独保留。
 
-以下按 Image、Video 各自继续训练到**总计第 700 个 global step**、沿用服务器当前评测协议进行估计。数值是用于规划实验的**主观预测**，不是已经完成的实验结果、学习曲线拟合结果或统计置信区间。
+## 长期续训与消融进度
+
+四个已实现的 Image/Video core/PPO2 分支已启动过面向**总步数 700** 的续训，恢复模型、优化器、随机数和数据加载器状态。最新可读训练快照时间是 **2026-10-27 20:29:43（北京时间）**；这是历史证据，不是实时进程状态。
+
+| 分支 | 快照中的已完成步数 | 最近保存步数 | 当时记录状态 |
+|---|---:|---:|---|
+| Image PPO2 | 311 | 301 | training |
+| Image core | 401 | 401 | queued |
+| Video PPO2 | 401 | 401 | queued |
+| Video core | 401 | 401 | queued |
+
+同步时，相关临时运行目录链接不可用。归档的 200/400 步评测仍无成绩，尚无可发布的 700 步完整评测。短程组件消融队列曾为长期续训让位，同预算原方法对照仍缺少已发布结果；不能用训练步数或排队状态替代 benchmark 成绩。
+
+[训练快照](results/continuation-training-snapshot.json) · [里程碑评测状态](results/continuation-evaluation-status.csv) · [组件消融状态](results/controlled-ablation-status.csv)
+
+## 历史 700 步规划预测（尚未实测）
+
+以下保留此前发布的规划预测，按 Image、Video 各自继续训练到**总计第 700 个 global step**、沿用相同评测协议进行估计。本次同步没有更新或验证这些预测。数值是用于规划实验的**主观预测**，不是已经完成的实验结果、学习曲线拟合结果或统计置信区间。
 
 | Benchmark | 原方法 700 步：中心预测 | PrismLoop 核心扩展 + PPO2，700 步：中心预测 | PrismLoop 主观合理区间 |
 |---|---:|---:|---:|

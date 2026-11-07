@@ -2,12 +2,19 @@ run,benchmark,score_percent,metric,micro_percent,native_vsi_percent,records,repe
 official-image-rl-control-mathvision-mini,mathvision-mini,22.697368421052634,mean answer score,,,304,1,record_audit_passed,True,
 official-image-rl-control-vstar,vstar,83.96596858638743,mean answer score,,,6112,32,record_audit_passed,True,
 official-image-rl-matched-control-hrbench-4k,hrbench-4k,72.375,mean answer score,,,800,1,record_audit_passed,True,
+official-image-sft-control-charxiv-descriptive,charxiv-descriptive,65.4,mean answer score,,,4000,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
+official-image-sft-control-charxiv-reasoning,charxiv-reasoning,36.3,mean answer score,,,1000,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
 official-image-sft-control-dynamath,dynamath,58.82235528942116,mean answer score,,,5010,1,record_audit_passed,True,
 official-image-sft-control-hrbench-4k,hrbench-4k,63.375,mean answer score,,,800,1,record_audit_passed,True,
 official-image-sft-control-hrbench-8k,hrbench-8k,58.12500000000001,mean answer score,,,800,1,record_audit_passed,True,
 official-image-sft-control-mathverse,mathverse,42.13197969543147,mean answer score,,,3940,1,record_audit_passed,True,
+official-image-sft-control-mathvision,mathvision,21.25,mean answer score,,,3040,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
 official-image-sft-control-mathvision-mini,mathvision-mini,22.697368421052634,mean answer score,,,304,1,record_audit_passed,True,
+official-image-sft-control-mathvista,mathvista,54.2,mean answer score,,,1000,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
+official-image-sft-control-mmmu,mmmu,50.888888888888886,mean answer score,,,900,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
+official-image-sft-control-tirbench,tirbench,18.765432098765434,mean answer score,,,1215,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
 official-image-sft-control-vstar,vstar,68.79908376963351,mean answer score,,,6112,32,record_audit_passed,True,
+official-image-sft-control-wemath,wemath,61.4367816091954,mean answer score,,,1740,1,record_audit_passed,,Newly synchronized SFT reference; no matched RL/extension comparison is published for this benchmark
 official-local-image-checkpoint-20261020T092620Z-step20-hrbench-4k,hrbench-4k,66.0,mean answer score,,,800,1,record_audit_passed,True,
 official-local-image-checkpoint-20261020T092620Z-step20-vstar,vstar,70.14070680628272,mean answer score,,,6112,32,record_audit_passed,True,
 official-local-video-checkpoint-20261020T092620Z-step40-vsibench,vsibench,34.95096237289154,released PyVision eight-task macro,36.07602339181285,14.813165031262255,5130,1,record_audit_passed,True,
@@ -30,3 +37,5 @@ research-eval-image-ppo2-20261021-vstar,vstar,71.64594240837697,mean answer scor
 research-eval-video-core-20261021-vsibench,vsibench,36.97591298387193,released PyVision eight-task macro,38.288499025341174,17.06152296640765,5130,1,record_audit_passed,True,
 research-eval-video-initial-checkpoint-20261021-vsibench,vsibench,35.98055878680368,released PyVision eight-task macro,37.32163742690066,15.00950423718089,5130,1,record_audit_passed,True,
 research-eval-video-ppo2-20261021-vsibench,vsibench,37.523212497212995,released PyVision eight-task macro,39.01559454191034,17.183672336978717,5130,1,record_audit_passed,True,
+supplementary-image-core-hrbench8-20261023-hrbench-8k,hrbench-8k,60.875,mean answer score,,,800,1,record_audit_passed,True,
+supplementary-image-ppo2-hrbench8-20261023-hrbench-8k,hrbench-8k,60.25,mean answer score,,,800,1,record_audit_passed,True,
