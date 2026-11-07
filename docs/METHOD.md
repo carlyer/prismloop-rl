@@ -4,6 +4,10 @@
 
 PrismLoop-RL retains the upstream GRPO training algorithm. Its implemented extensions address three places where the training signal can be distorted: numeric answer extraction, mixed-source rollout selection, and tool execution bonuses.
 
+![Implemented training loop](../assets/architecture.svg)
+
+[中文流程图](../assets/architecture.zh-CN.svg) · [Experiment branches](EXPERIMENTS.md)
+
 ## Agent interaction
 
 A question and its image or video enter a multi-turn rollout. The policy emits reasoning and optionally Python code. The executor returns text, images, or errors. The policy continues from that feedback and eventually emits a final answer. Several sibling trajectories are sampled for each question.

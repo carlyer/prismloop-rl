@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1160" viewBox="0 0 1440 1160" role="img" aria-labelledby="title desc" lang="zh-CN">
+<title id="title">实验分支与评测证据流程</title><desc id="desc">证据同步日期 2026-11-07 · 实线：已发布流程；虚线：待完成工作</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#8392aa"/></marker>
+<marker id="loop" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#13866f"/></marker></defs>
+<rect width="1440" height="1160" rx="24" fill="#f5f7fb"/>
+<path d="M36 24H1404" stroke="#13866f" stroke-width="4"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,PingFang SC,DejaVu Sans,sans-serif">
+<text x="40" y="59" font-size="13" fill="#13866f" font-weight="700">PRISMLOOP-RL / 研究流程</text>
+<text x="40" y="106" font-size="32" fill="#17243d" font-weight="700">实验分支与评测证据流程</text>
+<text x="40" y="142" font-size="17" fill="#596b85" font-weight="400">证据同步日期 2026-11-07 · 实线：已发布流程；虚线：待完成工作</text>
+<rect x="40" y="180" width="420" height="220" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="212" font-size="13" fill="#13866f" font-weight="700">A / MATCHED START</text>
+<text x="62" y="249" font-size="23" fill="#17243d" font-weight="700">从同一完整状态启动</text>
+<text x="62" y="285" font-size="18" fill="#596b85" font-weight="400">Image：第 20 步；Video：第 120 步</text>
+<text x="62" y="315" font-size="18" fill="#596b85" font-weight="400">恢复模型、优化器、随机数和数据加载器</text>
+<text x="62" y="345" font-size="18" fill="#596b85" font-weight="400">同一模态的比较分支使用同一起点</text>
+<rect x="510" y="180" width="420" height="220" rx="16" fill="#17243d" stroke="#dae2ee"/>
+<text x="532" y="212" font-size="13" fill="#72dfc8" font-weight="700">B / COMPLETED SHORT RUNS</text>
+<text x="532" y="249" font-size="23" fill="#f5f8ff" font-weight="700">Core 与 PPO2：各新增 40 步</text>
+<text x="532" y="285" font-size="18" fill="#cbd8ed" font-weight="400">Image → 60 步；Video → 160 步</text>
+<text x="532" y="315" font-size="18" fill="#cbd8ed" font-weight="400">4 个训练分支，8 项扩展实验评测</text>
+<text x="532" y="345" font-size="18" fill="#cbd8ed" font-weight="400">PPO2 每个 rollout 步的参数更新翻倍</text>
+<rect x="980" y="180" width="420" height="220" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="212" font-size="13" fill="#13866f" font-weight="700">C / EVALUATE + AUDIT</text>
+<text x="1002" y="249" font-size="23" fill="#17243d" font-weight="700">模型导出 → 评测记录核验</text>
+<text x="1002" y="285" font-size="18" fill="#596b85" font-weight="400">合并权重，检查参数更新与导出</text>
+<text x="1002" y="315" font-size="18" fill="#596b85" font-weight="400">固定评测协议 → 逐题记录与覆盖率核验</text>
+<text x="1002" y="345" font-size="18" fill="#596b85" font-weight="400">VStar avg@32；VSI 宏平均与 native 分列</text>
+<path d="M460 290H504" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M930 290H974" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M1190 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M250 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<path d="M720 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<rect x="40" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="502" font-size="13" fill="#7160a9" font-weight="700">D / CONTROLLED ABLATIONS</text>
+<text x="62" y="539" font-size="23" fill="#17243d" font-weight="700">同预算组件消融 · 尚未完成</text>
+<text x="62" y="575" font-size="18" fill="#596b85" font-weight="400">Image：2²，配额 × 工具奖励</text>
+<text x="62" y="605" font-size="18" fill="#596b85" font-weight="400">Video：2³，数值 × 配额 × 工具奖励</text>
+<text x="62" y="635" font-size="18" fill="#596b85" font-weight="400">均新增 40 步，epochs=1，共享执行修复</text>
+<text x="62" y="665" font-size="18" fill="#596b85" font-weight="400">复用 2 个 full-core；另需 10 个训练任务</text>
+<text x="62" y="695" font-size="18" fill="#596b85" font-weight="400">原方法同期对照：归档为待评测</text>
+<text x="62" y="725" font-size="18" fill="#596b85" font-weight="400">其余组件组合：归档为排队中</text>
+<rect x="510" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="532" y="502" font-size="13" fill="#7160a9" font-weight="700">E / LONG CONTINUATIONS</text>
+<text x="532" y="539" font-size="23" fill="#17243d" font-weight="700">沿 4 个已有分支继续训练</text>
+<text x="532" y="575" font-size="18" fill="#596b85" font-weight="400">Image 60 / Video 160 → 总计 700 步</text>
+<text x="532" y="605" font-size="18" fill="#596b85" font-weight="400">评测里程碑：200 / 400 / 700</text>
+<text x="532" y="635" font-size="18" fill="#596b85" font-weight="400">恢复完整状态，延续各自的训练历史</text>
+<text x="532" y="665" font-size="18" fill="#596b85" font-weight="400">13 项归档里程碑评测尚无成绩</text>
+<text x="532" y="695" font-size="18" fill="#596b85" font-weight="400">尚无已发布的 700 步实测结果</text>
+<text x="532" y="725" font-size="18" fill="#596b85" font-weight="400">待导出、评测与核验 → C</text>
+<rect x="980" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="502" font-size="13" fill="#13866f" font-weight="700">F / PUBLISHED MEASUREMENTS</text>
+<text x="1002" y="539" font-size="23" fill="#17243d" font-weight="700">40 行已发布实测结果</text>
+<text x="1002" y="575" font-size="18" fill="#596b85" font-weight="400">benchmark-results.csv</text>
+<text x="1002" y="605" font-size="18" fill="#596b85" font-weight="400">包含官方 SFT / RL 权重参考成绩</text>
+<text x="1002" y="635" font-size="18" fill="#596b85" font-weight="400">Core / PPO2 扩展实验成绩（%）：</text>
+<text x="1002" y="664" font-size="16" fill="#17243d" font-weight="400">VStar</text>
+<text x="1180" y="664" font-size="16" fill="#13866f" font-weight="700">71.53 / 71.65</text>
+<text x="1002" y="687" font-size="16" fill="#17243d" font-weight="400">HRBench-4K</text>
+<text x="1180" y="687" font-size="16" fill="#13866f" font-weight="700">66.50 / 68.75</text>
+<text x="1002" y="710" font-size="16" fill="#17243d" font-weight="400">HRBench-8K</text>
+<text x="1180" y="710" font-size="16" fill="#13866f" font-weight="700">60.88 / 60.25</text>
+<text x="1002" y="733" font-size="16" fill="#17243d" font-weight="400">VSI macro</text>
+<text x="1180" y="733" font-size="16" fill="#13866f" font-weight="700">36.98 / 37.52</text>
+<rect x="40" y="790" width="1360" height="162" rx="16" fill="#e9eef7"/>
+<text x="62" y="824" font-size="21" fill="#17243d" font-weight="700">历史训练快照 · 2026-10-27 12:29:43 UTC</text>
+<text x="62" y="859" font-size="18" fill="#13866f" font-weight="700">image-ppo2</text>
+<text x="62" y="889" font-size="18" fill="#17243d" font-weight="400">已完成 311 / 已保存 301</text>
+<text x="62" y="921" font-size="16" fill="#596b85" font-weight="400">当时状态：training</text>
+<text x="397" y="859" font-size="18" fill="#13866f" font-weight="700">image-core</text>
+<text x="397" y="889" font-size="18" fill="#17243d" font-weight="400">已完成 401 / 已保存 401</text>
+<text x="397" y="921" font-size="16" fill="#596b85" font-weight="400">当时状态：queued</text>
+<text x="732" y="859" font-size="18" fill="#13866f" font-weight="700">video-ppo2</text>
+<text x="732" y="889" font-size="18" fill="#17243d" font-weight="400">已完成 401 / 已保存 401</text>
+<text x="732" y="921" font-size="16" fill="#596b85" font-weight="400">当时状态：queued</text>
+<text x="1067" y="859" font-size="18" fill="#13866f" font-weight="700">video-core</text>
+<text x="1067" y="889" font-size="18" fill="#17243d" font-weight="400">已完成 401 / 已保存 401</text>
+<text x="1067" y="921" font-size="16" fill="#596b85" font-weight="400">当时状态：queued</text>
+<text x="40" y="993" font-size="21" fill="#17243d" font-weight="700">结果解读边界</text>
+<text x="40" y="1027" font-size="17" fill="#596b85" font-weight="400">历史快照不代表实时状态；保存 checkpoint 或评测排队均不等于已有 benchmark 成绩。</text>
+<text x="40" y="1055" font-size="17" fill="#596b85" font-weight="400">短程收益包含继续训练的影响；同期原方法对照与完整消融未完成。当前为单种子实验，不能宣称统计显著。</text>
+<text x="40" y="1083" font-size="17" fill="#596b85" font-weight="400">HRBench-8K 缺少起点成绩，且 PPO2 低于 core；官方发布 RL 权重的训练预算未与本实验对齐。</text>
+<text x="40" y="1111" font-size="17" fill="#596b85" font-weight="400">700 步规划预测与实测结果独立保存，本图不将预测绘制成实验成绩。</text>
+</g></svg>

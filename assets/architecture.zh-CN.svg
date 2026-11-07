@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000" role="img" aria-labelledby="title desc" lang="zh-CN">
+<title id="title">从视觉交互到策略更新</title><desc id="desc">已实现的核心训练流程 · Image 与 Video 分别训练，保留上游 GRPO 算法</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#8392aa"/></marker>
+<marker id="loop" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#13866f"/></marker></defs>
+<rect width="1440" height="1000" rx="24" fill="#f5f7fb"/>
+<path d="M36 24H1404" stroke="#13866f" stroke-width="4"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,PingFang SC,DejaVu Sans,sans-serif">
+<text x="40" y="59" font-size="13" fill="#13866f" font-weight="700">PRISMLOOP-RL / 研究流程</text>
+<text x="40" y="106" font-size="32" fill="#17243d" font-weight="700">从视觉交互到策略更新</text>
+<text x="40" y="142" font-size="17" fill="#596b85" font-weight="400">已实现的核心训练流程 · Image 与 Video 分别训练，保留上游 GRPO 算法</text>
+<rect x="40" y="180" width="420" height="245" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="212" font-size="13" fill="#13866f" font-weight="700">01 / INPUT</text>
+<text x="62" y="249" font-size="23" fill="#17243d" font-weight="700">视觉问题与数据来源</text>
+<text x="62" y="285" font-size="18" fill="#596b85" font-weight="400">图像：模型与 Python 均可访问</text>
+<text x="62" y="315" font-size="18" fill="#596b85" font-weight="400">视频：Python 通过 VideoReader 访问</text>
+<text x="62" y="345" font-size="18" fill="#596b85" font-weight="400">视频初始不提供帧；按需采样并显示</text>
+<text x="62" y="375" font-size="18" fill="#596b85" font-weight="400">每个问题采样 8 条同组轨迹</text>
+<rect x="510" y="180" width="420" height="245" rx="16" fill="#17243d" stroke="#dae2ee"/>
+<text x="532" y="212" font-size="13" fill="#72dfc8" font-weight="700">02 / INTERACT</text>
+<text x="532" y="249" font-size="23" fill="#f5f8ff" font-weight="700">Qwen2.5-VL ↔ Python</text>
+<text x="532" y="285" font-size="18" fill="#cbd8ed" font-weight="400">推理 → &lt;code&gt; → 执行 Python</text>
+<text x="532" y="315" font-size="18" fill="#cbd8ed" font-weight="400">读取文本 / 图像 / 错误 → 继续推理</text>
+<text x="532" y="345" font-size="18" fill="#cbd8ed" font-weight="400">执行状态在多轮交互间保留</text>
+<text x="532" y="375" font-size="18" fill="#cbd8ed" font-weight="400">循环直到最终答案或停止条件</text>
+<rect x="980" y="180" width="420" height="245" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="212" font-size="13" fill="#13866f" font-weight="700">03 / TRAJECTORY</text>
+<text x="1002" y="249" font-size="23" fill="#17243d" font-weight="700">最终答案与完整交互轨迹</text>
+<text x="1002" y="285" font-size="18" fill="#596b85" font-weight="400">包含模型动作与工具返回的观察</text>
+<text x="1002" y="315" font-size="18" fill="#596b85" font-weight="400">最终答案：&lt;answer&gt; 中的 boxed 答案</text>
+<text x="1002" y="345" font-size="18" fill="#596b85" font-weight="400">action mask 标记参与训练的 token</text>
+<text x="1002" y="375" font-size="18" fill="#596b85" font-weight="400">保留问题组 ID 与数据源标签</text>
+<path d="M460 300H504" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M930 300H974" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M1190 425V514" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<rect x="980" y="520" width="420" height="260" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="552" font-size="13" fill="#13866f" font-weight="700">04 / REWARD → ADVANTAGE</text>
+<text x="1002" y="589" font-size="23" fill="#17243d" font-weight="700">先计算奖励，再计算 GRPO 优势</text>
+<text x="1002" y="625" font-size="18" fill="#596b85" font-weight="400">答案奖励：judge 或最终数值 MRA</text>
+<text x="1002" y="655" font-size="18" fill="#596b85" font-weight="400">工具奖励：成功、非空、代码与反馈去重</text>
+<text x="1002" y="685" font-size="18" fill="#596b85" font-weight="400">每次 0.1，最多 2 次；保留答案正确性门控</text>
+<text x="1002" y="715" font-size="18" fill="#596b85" font-weight="400">在筛选前计算组内相对优势</text>
+<text x="1002" y="745" font-size="18" fill="#596b85" font-weight="400">不按奖励标准差归一化；不加 KL loss</text>
+<rect x="510" y="520" width="420" height="260" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="532" y="552" font-size="13" fill="#13866f" font-weight="700">05 / FILTER → SELECT</text>
+<text x="532" y="589" font-size="23" fill="#17243d" font-weight="700">按数据源配额选择问题组</text>
+<text x="532" y="625" font-size="18" fill="#596b85" font-weight="400">过滤无效轨迹 / 零方差组等候选</text>
+<text x="532" y="655" font-size="18" fill="#596b85" font-weight="400">各来源内部按奖励标准差排序</text>
+<text x="532" y="685" font-size="18" fill="#596b85" font-weight="400">尽量满足来源配额，优先保留完整组</text>
+<text x="532" y="715" font-size="18" fill="#596b85" font-weight="400">选择 128 条轨迹；不足时补充生成</text>
+<text x="532" y="745" font-size="18" fill="#596b85" font-weight="400">末组可能拆分；不重新计算优势</text>
+<rect x="40" y="520" width="420" height="260" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="552" font-size="13" fill="#7160a9" font-weight="700">06 / UPDATE</text>
+<text x="62" y="589" font-size="23" fill="#17243d" font-weight="700">GRPO + FSDP 更新策略</text>
+<text x="62" y="625" font-size="18" fill="#596b85" font-weight="400">学习率 1e-6；冻结视觉编码器</text>
+<text x="62" y="655" font-size="18" fill="#596b85" font-weight="400">Core：PPO epochs=1，每步更新 1 次</text>
+<text x="62" y="685" font-size="18" fill="#596b85" font-weight="400">PPO2：epochs=2，每步更新 2 次</text>
+<text x="62" y="715" font-size="18" fill="#596b85" font-weight="400">相同 rollout 步数不等于相同计算预算</text>
+<text x="62" y="745" font-size="18" fill="#596b85" font-weight="400">新策略继续生成下一批轨迹</text>
+<path d="M980 650H936" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M510 650H466" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M250 520V470H720V431" fill="none" stroke="#13866f" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#loop)"/>
+<text x="285" y="458" font-size="16" fill="#13866f" font-weight="700">策略更新 → 下一批交互采样</text>
+<rect x="40" y="820" width="1360" height="140" rx="16" fill="#e9eef7"/>
+<text x="62" y="853" font-size="20" fill="#17243d" font-weight="700">实现边界与共享执行环境</text>
+<text x="62" y="887" font-size="17" fill="#596b85" font-weight="400">数值答案提取用于 Video 数值样本；Image 来源使用 judge。数值样本的工具门控保留上游阈值。</text>
+<text x="62" y="914" font-size="17" fill="#596b85" font-weight="400">代码或反馈任一重复，均不再获得工具奖励；该启发式规则不证明工具调用的因果贡献。</text>
+<text x="62" y="941" font-size="17" fill="#596b85" font-weight="400">共享执行环境：spawn 工作进程与有界清理。模型、优化器、随机数和数据加载器状态共同支持续训。</text>
+</g></svg>

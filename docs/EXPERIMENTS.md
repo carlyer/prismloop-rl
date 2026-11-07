@@ -2,6 +2,10 @@
 
 [← Overview](../README.md)
 
+![Experiment branches and evaluation evidence](../assets/experiment-flow.svg)
+
+[中文实验流程图](../assets/experiment-flow.zh-CN.svg) · [Training loop](METHOD.md)
+
 ## Published snapshot
 
 The aggregate table in [benchmark-results.csv](../results/benchmark-results.csv) contains **40 measured result rows**, synchronized from available archives on **2026-11-07**. The previous 31 rows and their anomaly notes are retained. This update adds two image core/PPO2 HRBench-8K evaluations and seven official Image SFT evaluations. There are now eight extension evaluations: image core/PPO2 on VStar, HRBench-4K and HRBench-8K, and video core/PPO2 on VSI.
@@ -115,9 +119,15 @@ The available [milestone evaluation table](../results/continuation-evaluation-st
 - Longer training can plateau or regress. The repository contains no measured 700-step extension results.
 - Weights, raw benchmark questions, media, per-example outputs, and operational logs are not included in this public source release.
 
-## Rebuilding the figure
+## Rebuilding the figures
 
-With matplotlib and numpy installed, run:
+The bilingual SVG flowcharts use only the Python standard library. Result counts, scores and historical progress are read from the published CSV/JSON snapshot; method labels describe the archived configuration. Regenerate them with:
+
+```bash
+python scripts/render_flowcharts.py
+```
+
+To also rebuild the banner and measured-gain chart, install matplotlib and numpy and run:
 
 ```bash
 python scripts/render_project_assets.py

@@ -23,7 +23,7 @@ A visual agent can crop an image, inspect video frames, calculate a quantity, an
 
 **PrismLoop-RL** is a personal research project that reproduces and extends [PyVision-RL](https://github.com/agents-x-project/PyVision-RL). It studies these training choices with explicit feature switches, short-run experiments, and auditable evaluations. The name pairs **Prism**, for visual inputs, with **Loop**, for interaction and policy improvement.
 
-<img src="assets/architecture.svg" alt="Visual inputs flow through agent interaction, reward and selection, GRPO updates, then benchmark audits" width="100%" />
+<img src="assets/architecture.svg" alt="Visual inputs, Python interaction, reward and advantage calculation, source-aware selection, and GRPO policy updates" width="100%" />
 
 ## Project highlights
 
@@ -66,6 +66,12 @@ Bold marks the best extension run in this snapshot, not the best score across al
 **How to read the results.** Gains over the starting checkpoints include additional training. Same-budget original-algorithm controls and component ablations were pending in this snapshot. PPO epochs=2 performs twice as many optimizer updates per rollout batch. These single-seed runs do not establish statistical significance. Official released RL weights are references with unmatched training budgets.
 
 [Full score table](results/benchmark-results.csv) · [Evaluation protocol and limitations](docs/EXPERIMENTS.md)
+
+## Experiment and evaluation flow
+
+<img src="assets/experiment-flow.svg" alt="Completed short runs, pending factorial controls, long continuations, benchmark audits and historical progress" width="100%" />
+
+[Training loop](assets/architecture.svg) · [Experiment flow](assets/experiment-flow.svg) · [Diagram generator](scripts/render_flowcharts.py)
 
 ## Longer training and control status
 

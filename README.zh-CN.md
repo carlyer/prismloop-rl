@@ -18,7 +18,7 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 
 **Prism** 对应图像与视频等视觉输入；**Loop** 对应模型与 Python 环境交互，以及策略持续更新的过程。项目名称表达研究方向，不代表已经提出或验证全新的强化学习算法。
 
-<img src="assets/architecture.svg" alt="视觉输入、工具交互、奖励与样本选择、GRPO 更新和评测审计流程" width="100%" />
+<img src="assets/architecture.zh-CN.svg" alt="视觉输入、Python 交互、奖励与优势计算、来源配额选择和 GRPO 更新闭环" width="100%" />
 
 ## 项目亮点
 
@@ -63,6 +63,12 @@ PrismLoop-RL 基于 [PyVision-RL](https://github.com/agents-x-project/PyVision-R
 [全部结果](results/benchmark-results.csv) · [评测协议与异常说明](docs/EXPERIMENTS.md)
 
 本次新增的官方 Image SFT 结果为：完整 MathVision **21.25%**（3,040 题）、MathVista **54.20%**（1,000 题）、MMMU **50.89%**（900 题）、WeMath **61.44%**（1,740 题）、TIR-Bench **18.77%**（1,215 题）、CharXiv reasoning **36.30%**（1,000 题）、CharXiv descriptive **65.40%**（4,000 题）。它们是 SFT 参考成绩，不代表改进方法在这些数据集上已经完成评测。MathVision 完整集与 mini 的 304 题、22.70% 单独保留。
+
+## 实验与评测流程图
+
+<img src="assets/experiment-flow.zh-CN.svg" alt="短程实测、组件消融和长期续训分支，以及模型导出、评测核验和历史进度" width="100%" />
+
+[训练闭环大图](assets/architecture.zh-CN.svg) · [实验流程大图](assets/experiment-flow.zh-CN.svg) · [生成脚本](scripts/render_flowcharts.py)
 
 ## 长期续训与消融进度
 

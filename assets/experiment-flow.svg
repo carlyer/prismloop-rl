@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1160" viewBox="0 0 1440 1160" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">Experiment branches and the path to measured results</title><desc id="desc">Evidence synchronized 2026-11-07 · Solid arrows: published path; dashed arrows: pending work</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#8392aa"/></marker>
+<marker id="loop" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#13866f"/></marker></defs>
+<rect width="1440" height="1160" rx="24" fill="#f5f7fb"/>
+<path d="M36 24H1404" stroke="#13866f" stroke-width="4"/>
+<g font-family="Noto Sans CJK SC,Microsoft YaHei,PingFang SC,DejaVu Sans,sans-serif">
+<text x="40" y="59" font-size="13" fill="#13866f" font-weight="700">PRISMLOOP-RL / RESEARCH WORKFLOW</text>
+<text x="40" y="106" font-size="32" fill="#17243d" font-weight="700">Experiment branches and the path to measured results</text>
+<text x="40" y="142" font-size="17" fill="#596b85" font-weight="400">Evidence synchronized 2026-11-07 · Solid arrows: published path; dashed arrows: pending work</text>
+<rect x="40" y="180" width="420" height="220" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="212" font-size="13" fill="#13866f" font-weight="700">A / MATCHED START</text>
+<text x="62" y="249" font-size="23" fill="#17243d" font-weight="700">Restore the starting state</text>
+<text x="62" y="285" font-size="18" fill="#596b85" font-weight="400">Image: step 20   |   Video: step 120</text>
+<text x="62" y="315" font-size="18" fill="#596b85" font-weight="400">Model + optimizer + RNG + dataloader</text>
+<text x="62" y="345" font-size="18" fill="#596b85" font-weight="400">Matched start within each modality</text>
+<rect x="510" y="180" width="420" height="220" rx="16" fill="#17243d" stroke="#dae2ee"/>
+<text x="532" y="212" font-size="13" fill="#72dfc8" font-weight="700">B / COMPLETED SHORT RUNS</text>
+<text x="532" y="249" font-size="23" fill="#f5f8ff" font-weight="700">Core and PPO2: +40 steps</text>
+<text x="532" y="285" font-size="18" fill="#cbd8ed" font-weight="400">Image → 60   |   Video → 160</text>
+<text x="532" y="315" font-size="18" fill="#cbd8ed" font-weight="400">4 trained branches; 8 measured results</text>
+<text x="532" y="345" font-size="18" fill="#cbd8ed" font-weight="400">PPO2 doubles optimizer updates / step</text>
+<rect x="980" y="180" width="420" height="220" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="212" font-size="13" fill="#13866f" font-weight="700">C / EVALUATE + AUDIT</text>
+<text x="1002" y="249" font-size="23" fill="#17243d" font-weight="700">Export → audited records</text>
+<text x="1002" y="285" font-size="18" fill="#596b85" font-weight="400">Merge weights; audit updates and export</text>
+<text x="1002" y="315" font-size="18" fill="#596b85" font-weight="400">Fixed evaluator → record coverage audit</text>
+<text x="1002" y="345" font-size="18" fill="#596b85" font-weight="400">VStar avg@32; VSI macro ≠ native VSI</text>
+<path d="M460 290H504" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M930 290H974" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M1190 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round"  marker-end="url(#arrow)"/>
+<path d="M250 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<path d="M720 400V464" fill="none" stroke="#8392aa" stroke-width="2.3" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#arrow)"/>
+<rect x="40" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="62" y="502" font-size="13" fill="#7160a9" font-weight="700">D / CONTROLLED ABLATIONS</text>
+<text x="62" y="539" font-size="23" fill="#17243d" font-weight="700">Factorial design · pending</text>
+<text x="62" y="575" font-size="18" fill="#596b85" font-weight="400">Image: 2² quota × tool</text>
+<text x="62" y="605" font-size="18" fill="#596b85" font-weight="400">Video: 2³ numeric × quota × tool</text>
+<text x="62" y="635" font-size="18" fill="#596b85" font-weight="400">+40 steps; epochs=1; shared runtime</text>
+<text x="62" y="665" font-size="18" fill="#596b85" font-weight="400">Reuse 2 full-core cells; 10 new runs</text>
+<text x="62" y="695" font-size="18" fill="#596b85" font-weight="400">Original controls: evaluation queued</text>
+<text x="62" y="725" font-size="18" fill="#596b85" font-weight="400">Remaining component cells: queued</text>
+<rect x="510" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="532" y="502" font-size="13" fill="#7160a9" font-weight="700">E / LONG CONTINUATIONS</text>
+<text x="532" y="539" font-size="23" fill="#17243d" font-weight="700">Resume all 4 branches</text>
+<text x="532" y="575" font-size="18" fill="#596b85" font-weight="400">Image 60 / Video 160 → total step 700</text>
+<text x="532" y="605" font-size="18" fill="#596b85" font-weight="400">Milestones: 200 / 400 / 700</text>
+<text x="532" y="635" font-size="18" fill="#596b85" font-weight="400">Resume full state and branch history</text>
+<text x="532" y="665" font-size="18" fill="#596b85" font-weight="400">13 milestone evaluations have no score</text>
+<text x="532" y="695" font-size="18" fill="#596b85" font-weight="400">No measured step-700 result published</text>
+<text x="532" y="725" font-size="18" fill="#596b85" font-weight="400">Pending exports / evaluations → C</text>
+<rect x="980" y="470" width="420" height="285" rx="16" fill="#ffffff" stroke="#dae2ee"/>
+<text x="1002" y="502" font-size="13" fill="#13866f" font-weight="700">F / PUBLISHED MEASUREMENTS</text>
+<text x="1002" y="539" font-size="23" fill="#17243d" font-weight="700">40 measured result rows</text>
+<text x="1002" y="575" font-size="18" fill="#596b85" font-weight="400">benchmark-results.csv</text>
+<text x="1002" y="605" font-size="18" fill="#596b85" font-weight="400">Includes official SFT / RL references</text>
+<text x="1002" y="635" font-size="18" fill="#596b85" font-weight="400">Core / PPO2 extension scores (%):</text>
+<text x="1002" y="664" font-size="16" fill="#17243d" font-weight="400">VStar</text>
+<text x="1180" y="664" font-size="16" fill="#13866f" font-weight="700">71.53 / 71.65</text>
+<text x="1002" y="687" font-size="16" fill="#17243d" font-weight="400">HRBench-4K</text>
+<text x="1180" y="687" font-size="16" fill="#13866f" font-weight="700">66.50 / 68.75</text>
+<text x="1002" y="710" font-size="16" fill="#17243d" font-weight="400">HRBench-8K</text>
+<text x="1180" y="710" font-size="16" fill="#13866f" font-weight="700">60.88 / 60.25</text>
+<text x="1002" y="733" font-size="16" fill="#17243d" font-weight="400">VSI macro</text>
+<text x="1180" y="733" font-size="16" fill="#13866f" font-weight="700">36.98 / 37.52</text>
+<rect x="40" y="790" width="1360" height="162" rx="16" fill="#e9eef7"/>
+<text x="62" y="824" font-size="21" fill="#17243d" font-weight="700">Historical training snapshot · 2026-10-27 12:29:43 UTC</text>
+<text x="62" y="859" font-size="18" fill="#13866f" font-weight="700">image-ppo2</text>
+<text x="62" y="889" font-size="18" fill="#17243d" font-weight="400">Completed 311 / saved 301</text>
+<text x="62" y="921" font-size="16" fill="#596b85" font-weight="400">Recorded: training</text>
+<text x="397" y="859" font-size="18" fill="#13866f" font-weight="700">image-core</text>
+<text x="397" y="889" font-size="18" fill="#17243d" font-weight="400">Completed 401 / saved 401</text>
+<text x="397" y="921" font-size="16" fill="#596b85" font-weight="400">Recorded: queued</text>
+<text x="732" y="859" font-size="18" fill="#13866f" font-weight="700">video-ppo2</text>
+<text x="732" y="889" font-size="18" fill="#17243d" font-weight="400">Completed 401 / saved 401</text>
+<text x="732" y="921" font-size="16" fill="#596b85" font-weight="400">Recorded: queued</text>
+<text x="1067" y="859" font-size="18" fill="#13866f" font-weight="700">video-core</text>
+<text x="1067" y="889" font-size="18" fill="#17243d" font-weight="400">Completed 401 / saved 401</text>
+<text x="1067" y="921" font-size="16" fill="#596b85" font-weight="400">Recorded: queued</text>
+<text x="40" y="993" font-size="21" fill="#17243d" font-weight="700">Interpretation limits</text>
+<text x="40" y="1027" font-size="17" fill="#596b85" font-weight="400">Historical progress is not live status. A checkpoint or queued evaluation is not a benchmark score.</text>
+<text x="40" y="1055" font-size="17" fill="#596b85" font-weight="400">Short-run gains include continued training; original controls and full ablations are pending. Single seed, no significance claim.</text>
+<text x="40" y="1083" font-size="17" fill="#596b85" font-weight="400">HRBench-8K has no starting-checkpoint score; PPO2 is below core there. Official RL references have unmatched budgets.</text>
+<text x="40" y="1111" font-size="17" fill="#596b85" font-weight="400">The 700-step planning forecast is separate from measurements and is not plotted here.</text>
+</g></svg>
